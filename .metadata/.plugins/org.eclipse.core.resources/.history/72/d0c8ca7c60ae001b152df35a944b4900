@@ -134,16 +134,19 @@ void HAL_UART_RxCpltCallback (UART_HandleTypeDef *huart) { // callback de la int
 	}
 }
 
-struct CA_Configuration_S MASB_COMM_S_getCaConfiguration(void) {//Struct containing data for the
-	//chrono_amperometry
+struct CA_Configuration_S MASB_COMM_S_getCaConfiguration(void) { // cronoamperometría
+
 	struct CA_Configuration_S caConfiguration;
-	//Variables used in the chrono_amperometry
-	caConfiguration.eDc = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 1);
-	caConfiguration.measurementTime = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 5);
-	caConfiguration.samplingPeriodMs = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 9);
+
+	  	caConfiguration.eBegin = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 1);
+	  	caConfiguration.eVertex1 = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 9);
+	  	caConfiguration.eVertex2 = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 17);
+	  	caConfiguration.cycles = rxBufferDecoded[25];
+	  	caConfiguration.scanRate = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 26);
+	  	caConfiguration.eStep = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 34);
 
 	return caConfiguration;
-}
+ }
 
 static long saveByteArrayAsLongFromBuffer(uint8_t *buffer, uint8_t index) {
 

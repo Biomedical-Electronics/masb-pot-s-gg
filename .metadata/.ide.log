@@ -513,3 +513,7 @@
 2021-05-06 13:06:27,679 [INFO] ProjectBuilder:2207 - Time for Copy CMSIS : 0mS.
 2021-05-06 13:06:30,687 [INFO] ApiDb:263 - Save user favorites file C:\Users\riza_/.stm32cubeide/favorites.mcus.txt: 0 item(s)
 2021-05-06 13:06:30,687 [INFO] ApiDb:267 - User favorites MCUs=[]
+2021-05-06 13:42:03,020 [INFO] Activator:170 - 
+
+
+2021-05-06 13:42:03,027 [INFO] Activator:171 - !SESSION log4j initialized
