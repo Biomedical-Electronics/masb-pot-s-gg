@@ -1,15 +1,21 @@
 #include "components/stm32main.h"
 #include "components/masb_comm_s.h"
+#include "components/ad5280_driver.h"
+#include "components/mcp4725_driver.h"
+#include "components/i2c_lib.h"
 
 struct CV_Configuration_S cvConfiguration;
 struct CA_Configuration_S caConfiguration;
 struct Data_S data;
+int8_t	Estado; //variable para cambiar el estado de tipo de medida
 
 // Funcion ejecutada antes del while loop (solo se ejecuta una vez)
 // estructura que contenga todos punteros a las diferentes configuraciones de los diferentes periféricos
 void setup(struct Handles_S *handles) {
+	//GPIO_pinAlimentació - encendre alimentació (1)
 	 MASB_COMM_S_setUart(handles->huart);
 	 MASB_COMM_S_waitForMessage(); // componente masb_comm_s espera el primer byte
+	 I2C_Init(handles->hi2c);
 }
 
 // Funcion ejecutada en el while loop.
@@ -21,6 +27,7 @@ void loop(void) {
 	 				// Leemos la configuracion que se nos ha enviado en el mensaje y
 	 				// la guardamos en la variable caConfiguration
 	 				caConfiguration = MASB_COMM_S_getCaConfiguration();
+	 				Estado=CA;
 	 			break;
 
 	 			case START_CV_MEAS: // Si hemos recibido START_CV_MEAS
@@ -28,6 +35,7 @@ void loop(void) {
 	                 // Leemos la configuracion que se nos ha enviado en el mensaje y
 	                 // la guardamos en la variable cvConfiguration
 					cvConfiguration = MASB_COMM_S_getCvConfiguration();
+					Estado=CV;
 
 	 				/* Mensaje a enviar desde CoolTerm para hacer comprobacion
 	 				 * eBegin = 0.25 V
@@ -57,7 +65,7 @@ void loop(void) {
 	 				 * 020300
 	 				 */
 	 				__NOP(); // Esta instruccion no hace nada y solo sirve para poder anadir un breakpoint
-
+	 				Estado=IDLE;
 	 				// Aqui iria el codigo para tener la medicion si implementais el comando stop.
 
 	 				break;
@@ -94,10 +102,32 @@ void loop(void) {
 
 	       // Una vez procesado los comando, esperamos el siguiente
 	 		MASB_COMM_S_waitForMessage();
+
+	} else {
+		switch (Estado) {
+		case CV: //CV
+			//INICIAR Medición
+			//I2C_Write(uint8_t slaveAddress, uint8_t *data(bufferCV), uint16_t length);
+			//I2C_Receive(uint8_t slaveAddress, uint8_t *data(bufferCV), uint16_t length);
+			//Canviar estat a IDLE (Si és l'últim punt)
+		break;
+
+		case CA: //CA
+			//I2C_Write(uint8_t slaveAddress, uint8_t *data(bufferCA), uint16_t length);
+		break;
+
+		case IDLE: //IDLE
+		break;
+		}
+
+
 	}
 
 	 	// Aqui es donde deberia de ir el codigo de control de las mediciones si se quiere implementar
 	   // el comando de STOP.
+
+	//Leer el estado en el que estamos (CV, CA ,IDLE)
+
 }
 
 

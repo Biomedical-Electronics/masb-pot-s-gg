@@ -1,7 +1,7 @@
 /*
  * masb_comm_s.h
  *
- *  Created on: May 6, 2021
+ *  Created on: Apr 14, 2021
  *      Author: riza_
  */
 
@@ -13,6 +13,9 @@
  #define UART_TERM_CHAR		 0x00
  #define TRUE					1
  #define FALSE					0
+ #define CV						2
+ #define CA						3
+ #define IDLE					4
 
  // Commandos definidos en el documento (set de instrucciones)
  #define START_CV_MEAS	0x01

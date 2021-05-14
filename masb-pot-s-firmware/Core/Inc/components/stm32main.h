@@ -11,8 +11,9 @@
 #include "stm32f4xx_hal.h"
 
 struct Handles_S {
-    UART_HandleTypeDef *huart;
-     // Aqui iriamos anadiendo los diferentes XXX_HandleTypeDef que necesitaramos anadir.
+	UART_HandleTypeDef *huart;
+	I2C_HandleTypeDef * hi2c;
+// Aqui iriamos anadiendo los diferentes XXX_HandleTypeDef que necesitaramos anadir.
 };
 // Prototypes.
 void setup(struct Handles_S *handles);

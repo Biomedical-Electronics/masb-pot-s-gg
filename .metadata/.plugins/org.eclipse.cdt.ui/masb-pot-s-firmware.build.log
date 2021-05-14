@@ -1,21 +1,7 @@
-13:36:51 **** Incremental Build of configuration Debug for project masb-pot-s-firmware ****
-make -j4 all 
-arm-none-eabi-gcc "../Core/Src/components/masb_comm_s.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F401xE -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/components/masb_comm_s.d" -MT"Core/Src/components/masb_comm_s.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/components/masb_comm_s.o"
-arm-none-eabi-gcc "../Core/Src/components/stm32main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F401xE -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/components/stm32main.d" -MT"Core/Src/components/stm32main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/components/stm32main.o"
-arm-none-eabi-gcc -o "masb-pot-s-firmware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\riza_\Downloads\4o EBM\MICROCONTR\masb-workspace\masb-pot-s-gg\masb-pot-s-firmware\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="masb-pot-s-firmware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: masb-pot-s-firmware.elf
- 
-arm-none-eabi-objdump -h -S  masb-pot-s-firmware.elf  > "masb-pot-s-firmware.list"
-arm-none-eabi-objcopy  -O binary  masb-pot-s-firmware.elf  "masb-pot-s-firmware.bin"
-arm-none-eabi-size   masb-pot-s-firmware.elf 
-   text	   data	    bss	    dec	    hex	filename
-   9592	     20	   1708	  11320	   2c38	masb-pot-s-firmware.elf
-Finished building: default.size.stdout
-Finished building: masb-pot-s-firmware.bin
- 
-Finished building: masb-pot-s-firmware.list
- 
+17:24:31 **** Clean-only build of configuration Debug for project masb-pot-s-firmware ****
+make -j4 clean 
+rm -rf *
  
 
-13:36:52 Build Finished. 0 errors, 0 warnings. (took 1s.884ms)
+17:24:31 Build Finished. 0 errors, 0 warnings. (took 371ms)
 

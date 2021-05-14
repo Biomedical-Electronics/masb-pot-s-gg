@@ -1,21 +1,26 @@
-/*
- * cyclic_voltammetry.h
- *
- *  Created on: May 6, 2021
- *      Author: riza_
- */
+/**
+  ******************************************************************************
+  * @file		cyclic_voltammetry.h
+  * @brief		Archivo de encabezado del componente encargado de la gestión de
+  *             la voltammetría cíclica.
+  * @author		Albert Álvarez Carulla
+  * @copyright	Copyright 2020 Albert Álvarez Carulla. All rights reserved.
+  ******************************************************************************
+  */
 
 #ifndef INC_COMPONENTS_CYCLIC_VOLTAMMETRY_H_
 #define INC_COMPONENTS_CYCLIC_VOLTAMMETRY_H_
 
-struct CV_Configuration_S { // estructura que contiene los parámetros de configuración de una voltametría cíclica
+#include "stm32f4xx_hal.h"
 
- 	double eBegin;
- 	double eVertex1;
- 	double eVertex2;
- 	uint8_t cycles;
- 	double scanRate;
- 	double eStep;
+struct CV_Configuration_S {
+
+	double eBegin;
+	double eVertex1;
+	double eVertex2;
+	uint8_t cycles;
+	double scanRate;
+	double eStep;
 
 };
 

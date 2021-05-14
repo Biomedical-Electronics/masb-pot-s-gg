@@ -1,3 +1,10 @@
+/*
+ * masb_comm_s.c
+ *
+ *  Created on: Apr 14, 2021
+ *      Author: riza_
+ */
+
 #include "components/masb_comm_s.h"
 
 
@@ -15,7 +22,9 @@
  static void saveLongAsByteArrayIntoBuffer(uint8_t *buffer, uint8_t index, uint32_t longVal); // funciones para enviar los datos
  static void saveDoubleAsByteArrayIntoBuffer(uint8_t *buffer, uint8_t index, double doubleVal); // (conversiones de variables decimales a vectores de bytes)
 
-
+ /*
+  *
+  */
 
  //funciones
 void MASB_COMM_S_setUart(UART_HandleTypeDef *newHuart) { // obtener el puntero a la configuración de la UART
@@ -134,16 +143,16 @@ void HAL_UART_RxCpltCallback (UART_HandleTypeDef *huart) { // callback de la int
 	}
 }
 
-struct CA_Configuration_S MASB_COMM_S_getCaConfiguration(void) {//Struct containing data for the
-	//chrono_amperometry
-	struct CA_Configuration_S caConfiguration;
-	//Variables used in the chrono_amperometry
-	caConfiguration.eDc = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 1);
-	caConfiguration.measurementTime = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 5);
-	caConfiguration.samplingPeriodMs = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 9);
+struct CA_Configuration_S MASB_COMM_S_getCaConfiguration(void) { // cronoamperometría
 
-	return caConfiguration;
-}
+	struct CA_Configuration_S caConfiguration;
+
+		caConfiguration.eDc = saveByteArrayAsDoubleFromBuffer(rxBufferDecoded, 1);
+		caConfiguration.samplingPeriodMs = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 9);
+		caConfiguration.measurementTime = saveByteArrayAsLongFromBuffer(rxBufferDecoded, 13);
+
+		return caConfiguration;
+ }
 
 static long saveByteArrayAsLongFromBuffer(uint8_t *buffer, uint8_t index) {
 
