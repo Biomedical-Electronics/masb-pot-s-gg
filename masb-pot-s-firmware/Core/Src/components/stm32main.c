@@ -1,0 +1,125 @@
+
+#include "components/stm32main.h"
+#include "components/masb_comm_s.h"
+#include "components/chronoamperometry.h"
+#include "components/cobs.h"
+
+#define FALSE	0 //Definimos T/F
+#define TRUE	1
+
+
+struct CV_Configuration_S cvConfiguration;
+struct CA_Configuration_S caConfiguration;
+struct Data_S data;
+
+uint32_t i=0; //Comptador
+volatile struct Data_S dades; //Struct a la que guardem les mesures
+uint32_t resADC = 1023;
+double Vref = 3.3;
+uint32_t rTia = 1e5;
+int32_t samplingPeriod = 2;
+int32_t cycles = 10;
+
+double eStep = 0.005; //V
+double scanRate = 0.01; //V/s
+
+
+void setup(struct Handles_S *handles) { //We define the use of the setup function (only run once)
+	MASB_COMM_S_setUart(handles->huart); //To modify the UART configutration
+	MASB_COMM_S_setUart(handles->htim);
+	MASB_COMM_S_setUart(handles->hi2c);
+	MASB_COMM_S_setUart(handles->hadc);
+	MASB_COMM_S_waitForMessage(); //Now we wait for the 1st byte
+
+}
+
+void loop(void) {//while loop function
+	HAL_TIM_Base_Start_IT(&htim3);
+
+	if (MASB_COMM_S_dataReceived()) { //If a message is received
+		switch(MASB_COMM_S_command()) { //we assess the command received
+			case START_CV_MEAS: //0x01
+				//we read the configuration sent and save it into cvConfiguration
+				cvConfiguration = MASB_COMM_S_getCvConfiguration();
+
+				/* Message to be sent to CoolTerm for the comprobation
+				 * eBegin = 0.25 V
+				 * eVertex1 = 0.5 V
+				 * eVertex2 = -0.5 V
+				 * cycles = 2
+				 * scanRate = 0.01 V/s
+				 * eStep = 0.005 V
+				 *
+				 * Message previous to the codification
+				 * 01000000000000D03F000000000000E03F000000000000E0BF027B14AE47E17A843F7B14AE47E17A743F
+				 *
+				 * Message codified sent from CoolTerm
+				 * 0201010101010103D03F010101010103E03F010101010114E0BF027B14AE47E17A843F7B14AE47E17A743F00
+				 */
+				__NOP(); //Instruction to add a breakpoint
+
+				break;
+
+			case STOP_MEAS: //0x02
+				caConfiguration = MASB_COMM_S_getCaConfiguration();
+
+				void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim3) {
+					HAL_ADC_Start_IT(&hadc1);
+					HAL_ADC_PollForConversion(&hadc1, 200);
+					uint16_t Vsenal = HAL_ADC_GetValue(&hadc1);
+
+					double vAdc = (Vsenal/Vref) * (resADC);
+					double vCell = (1.65-vAdc)*2;
+
+					double iCell = ((vAdc-1.65)*2)/rTia;
+
+					volatile struct Data_S dades; {
+						dades.point = 1;
+						dades.timeMs = samplingPeriod * i;
+						dades.voltage = vCell;
+						dades.current = iCell;
+					};
+
+					MASB_COMM_S_sendData(dades);
+
+					HAL_ADC_Stop_IT(&hadc1);
+
+					i++;
+
+					if(i == cycles) {
+						HAL_TIM_Base_Stop_IT(&htim3);
+					}
+				}
+				__NOP();
+
+				break;
+
+			default: //Not accepted command
+				//Test of data sending
+				data.point = 1;
+				data.timeMs = 100;
+				data.voltage = 0.23;
+				data.current = 12.3e-6;
+
+				/*
+				* We send a command from CoolTerm:
+				* 010100
+				*
+				* Microcontroller data before the medition
+				* 0100000064000000713D0AD7A370CD3F7050B12083CBE93E
+				*
+				* Data received from CoolTerm
+				* 020101010264010111713D0AD7A370CD3F7050B12083CBE93E00
+				*/
+
+				//We send the data
+				MASB_COMM_S_sendData(data);
+
+				break;
+		}
+
+		MASB_COMM_S_waitForMessage();
+
+	}
+
+}
