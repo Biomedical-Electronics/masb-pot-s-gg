@@ -1,7 +1,10 @@
-17:24:31 **** Clean-only build of configuration Debug for project masb-pot-s-firmware ****
-make -j4 clean 
-rm -rf *
+13:48:54 **** Incremental Build of configuration Debug for project masb-pot-s-firmware ****
+make -j4 all 
+arm-none-eabi-size   masb-pot-s-firmware.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17512	    120	   2032	  19664	   4cd0	masb-pot-s-firmware.elf
+Finished building: default.size.stdout
  
 
-17:24:31 Build Finished. 0 errors, 0 warnings. (took 371ms)
+13:48:55 Build Finished. 0 errors, 0 warnings. (took 500ms)
 
