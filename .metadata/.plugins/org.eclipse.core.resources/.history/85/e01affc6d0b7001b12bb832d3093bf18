@@ -15,7 +15,7 @@ uint32_t i=0;
 const float sense = 3.3/4095; // factor de conversion de ADC a tension
 MCP4725_Handle_T hdac = NULL;
 _Bool agafa_mesura = FALSE;
-
+float vdac = 1.65-VCell/2;
 
 
 // Funcion ejecutada antes del while loop (solo se ejecuta una vez)
@@ -136,7 +136,6 @@ void loop(void) {
 
 		case CA: //CA
 			VCell = caConfiguration.eDc;
-			float vdac = 1.65-VCell/2;
 			MCP4725_SetOutputVoltage(hdac, vdac);
 			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); //obre relé, comença mesura
 			__HAL_TIM_SET_AUTORELOAD(&htim3, caConfiguration.samplingPeriodMs*10); //definim un periode de mesura

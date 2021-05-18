@@ -17,7 +17,6 @@ MCP4725_Handle_T hdac = NULL;
 _Bool agafa_mesura = FALSE;
 
 
-
 // Funcion ejecutada antes del while loop (solo se ejecuta una vez)
 // estructura que contenga todos punteros a las diferentes configuraciones de los diferentes periféricos
 void setup(struct Handles_S *handles) {
@@ -136,8 +135,7 @@ void loop(void) {
 
 		case CA: //CA
 			VCell = caConfiguration.eDc;
-			float vdac = 1.65-VCell/2;
-			MCP4725_SetOutputVoltage(hdac, vdac);
+			MCP4725_SetOutputVoltage(hdac, float (1.65-VCell/2));
 			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); //obre relé, comença mesura
 			__HAL_TIM_SET_AUTORELOAD(&htim3, caConfiguration.samplingPeriodMs*10); //definim un periode de mesura
 			// definit sampling period afora?
