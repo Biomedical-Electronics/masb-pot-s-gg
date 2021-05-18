@@ -1,0 +1,125 @@
+
+#include "components/stm32main.h"
+#include "components/masb_comm_s.h"
+
+
+struct CV_Configuration_S cvConfiguration;
+struct CA_Configuration_S caConfiguration;
+struct Data_S data;
+
+uint32_t i=0;
+double rTIA = 1e5;
+const float sense = 3.3/4095; // factor de conversion de ADC a tension
+volatile struct Data_S dades;
+uint16_t adcValue = 0;
+const float samplingPeriod = 0.5;
+double cycles = 5;
+double measurementTime = 60;
+
+uint8_t txBuffer[32] = { 0 }; // buffer para transmitir
+uint8_t txBufferSize = 0; // tamano a enviar
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
+
+void setup(struct Handles_S *handles) { //We define the use of the setup function (only run once)
+	MASB_COMM_S_setUart(handles->huart); //To modify the UART configutration
+	MASB_COMM_S_waitForMessage(); //Now we wait for the 1st byte
+
+}
+
+void loop(void) {//while loop function
+	HAL_TIM_Base_Start_IT(&htim3);
+	HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim); {
+		if (MASB_COMM_S_dataReceived()) { //If a message is received
+			switch(MASB_COMM_S_command()) { //we assess the command received
+				case START_CV_MEAS: //0x01
+					//we read the configuration sent and save it into cvConfiguration
+					cvConfiguration = MASB_COMM_S_getCvConfiguration();
+
+					/* Message to be sent to CoolTerm for the comprobation
+					 * eBegin = 0.25 V
+					 * eVertex1 = 0.5 V
+					 * eVertex2 = -0.5 V
+					 * cycles = 2
+					 * scanRate = 0.01 V/s
+					 * eStep = 0.005 V
+					 *
+					 * Message previous to the codification
+					 * 01000000000000D03F000000000000E03F000000000000E0BF027B14AE47E17A843F7B14AE47E17A743F
+					 *
+					 * Message codified sent from CoolTerm
+					 * 0201010101010103D03F010101010103E03F010101010114E0BF027B14AE47E17A843F7B14AE47E17A743F00
+					 */
+					__NOP(); //Instruction to add a breakpoint
+
+					break;
+
+				case STOP_MEAS: //0x02
+					caConfiguration = MASB_COMM_S_getCaConfiguration();
+					HAL_ADC_Start_IT(&hadc1);
+					HAL_ADC_PollForConversion(&hadc1, 200);
+					uint16_t adcValue = HAL_ADC_GetValue(&hadc1);
+
+					double vADC = (adcValue/sense)*(1023);
+					double vCell = (1.65 - vADC)*2;
+					double iCell = vCell/rTIA;
+
+					dades.point = 1;
+					dades.timeMs = samplingPeriod * i;
+					dades.voltage = vCell;
+					dades.current = iCell;
+
+					MASB_COMM_S_sendData(dades);
+					HAL_ADC_Stop_IT(&hadc1);
+
+					i++;
+
+					if(i == measurementTime) {
+						HAL_TIM_Base_Stop_IT(&htim3);
+						HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+					}
+
+					/* Mensaje a enviar desde CoolTerm para hacer comprobacion
+					 * eDC = 0.3 V
+					 * samplingPeriodMs = 10 ms
+					 * measurementTime = 120 s
+					 *
+					 * Mensaje previo a la codificacion (lo que teneis que poder obtener en el microcontrolador):
+					 * 02333333333333D33F0A00000078000000
+					 *
+					 * Mensaje codificado que enviamos desde CoolTerm (incluye ya el termchar):
+					 * 0B02333333333333D33F0A0101027801010100
+					 */
+					__NOP();
+
+					break;
+
+				default: //Not accepted command
+					//Test of data sending
+					data.point = 1;
+					data.timeMs = 100;
+					data.voltage = 0.23;
+					data.current = 12.3e-6;
+
+					/*
+					* We send a command from CoolTerm:
+					* 010100
+					*
+					* Microcontroller data before the medition
+					* 0100000064000000713D0AD7A370CD3F7050B12083CBE93E
+					*
+					* Data received from CoolTerm
+					* 020101010264010111713D0AD7A370CD3F7050B12083CBE93E00
+					*/
+
+					//We send the data
+					MASB_COMM_S_sendData(data);
+
+					break;
+		}
+
+		MASB_COMM_S_waitForMessage();
+
+	}
+
+}
