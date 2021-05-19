@@ -3,7 +3,7 @@
 #define INC_COMPONENTS_CHRONO_AMPEROMETRY_H_
 
 #include "stm32f4xx_hal.h"
-
+#include
 
 struct CA_Configuration_S {
 	double eDc;

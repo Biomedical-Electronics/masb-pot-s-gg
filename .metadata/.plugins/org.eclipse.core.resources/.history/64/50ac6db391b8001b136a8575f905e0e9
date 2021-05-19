@@ -133,7 +133,7 @@ void loop(void) {
 			vObjetivo = cvConfiguration.eVertex1;
 			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); //tanquem relé (1), iniciem mesura
 			//__HAL_TIM_SET_AUTORELOAD(&htim2, samplingperiod*10); //definim un periode de mesura
-			// definir sampling period
+			// definit sampling period
 			__HAL_TIM_SET_COUNTER(&htim3, 0); //establim un counter a 0
 			HAL_TIM_Base_Start_IT(&htim3); //comencem el timer
 			_Bool agafa_mesura1 = FALSE;
@@ -177,7 +177,7 @@ void loop(void) {
 						}
 					}
 				} else {
-					if (valor absolut (vCell+cvConfiguration.eStep) > vObjetivo) {
+					if (vCell+cvConfiguration.eStep > vObjetivo) {
 						vCell = vObjetivo; //fijar tensión
 					} else {
 						vCell = vCell + cvConfiguration.eStep;

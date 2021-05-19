@@ -9,7 +9,7 @@ struct CA_Configuration_S caConfiguration;
 struct Data_S data;
 int8_t	Estado; //variable para cambiar el estado de tipo de medida
 
-double vCell = 0;
+double VCell = 0;
 double rTIA = 1e5;
 double vObjetivo = 0;
 uint32_t i=0;
@@ -129,70 +129,17 @@ void loop(void) {
 	} else {
 		switch (Estado) {
 		case CV: //CV
-			/*vCell = cvConfiguration.eBegin;
-			vObjetivo = cvConfiguration.eVertex1;
-			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); //tanquem relé (1), iniciem mesura
-			//__HAL_TIM_SET_AUTORELOAD(&htim2, samplingperiod*10); //definim un periode de mesura
-			// definir sampling period
-			__HAL_TIM_SET_COUNTER(&htim3, 0); //establim un counter a 0
-			HAL_TIM_Base_Start_IT(&htim3); //comencem el timer
-			_Bool agafa_mesura1 = FALSE;
-			//while (i<=això com ho mirem?) {
-				if (agafa_mesura) {
-					HAL_ADC_Start_IT(&hadc1);
-					HAL_ADC_PollForConversion(&hadc1, 200);
-					uint16_t adcValue = HAL_ADC_GetValue(&hadc1);
+			VCell = cvConfiguration.eBegin;
+			cvConfiguration.eVertex1;
 
-					double vADC = (adcValue/sense)*(1023);
-					double vCell = (1.65 - vADC)*2;
-					double iCell = vCell/rTIA;
-
-					dades.point = 1;
-					// ?dades.timeMs = cvConfiguration.eStep * i;
-					dades.voltage = vCell;
-					dades.current = iCell;
-
-					MASB_COMM_S_sendData(dades);
-					agafa_mesura1 = FALSE;
-
-					HAL_ADC_Stop_IT(&hadc1);
-
-					// canviar? i=i*caConfiguration.samplingPeriodMs;
-
-				}
-				//ara un cop hem parat l'adc i hem enviat les mesures, hem de fer el condicional
-				if (vCell== vObjetivo) {
-					if (vObjetivo == cvConfiguration.eVertex1) {
-						vObjetivo = cvConfiguration.eVertex2;
-					} else {
-						if (vObjetivo == cvConfiguration.eVertex2) {
-							vObjetivo = cvConfiguration.eBegin;
-						} else {
-							if (cvConfiguration.cycles == último ciclo?) {
-								HAL_TIM_Base_Stop_IT(&htim3); //parem timer
-								HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); //parem mesura
-							} else {
-								vObjetivo = cvConfiguration.eVertex1;
-							}
-						}
-					}
-				} else {
-					if (valor absolut (vCell+cvConfiguration.eStep) > vObjetivo) {
-						vCell = vObjetivo; //fijar tensión
-					} else {
-						vCell = vCell + cvConfiguration.eStep;
-					}
-				}
-
-
-			//Canviar estat a IDLE (Si és l'últim punt)*/
+			//Canviar estat a IDLE (Si és l'últim punt)
 		break;
 
 		case CA: //CA
-			vCell = caConfiguration.eDc;
-			float vdac = 1.65-vCell/2;
+			VCell = caConfiguration.eDc;
+			float vdac = 1.65-VCell/2;
 			MCP4725_SetOutputVoltage(hdac, vdac);
-			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); //tanquem relé (1), iniciem mesura
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); //obre relé, comença mesura
 			__HAL_TIM_SET_AUTORELOAD(&htim3, caConfiguration.samplingPeriodMs*10); //definim un periode de mesura
 			// definit sampling period afora?
 			__HAL_TIM_SET_COUNTER(&htim3, 0); //establim un counter a 0
@@ -223,7 +170,6 @@ void loop(void) {
 				}
 				HAL_TIM_Base_Stop_IT(&htim3); //parem timer
 				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); //parem mesura
-				//canviar estat a idle?
 			}
 
 		break;
