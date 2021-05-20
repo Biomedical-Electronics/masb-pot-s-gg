@@ -16,7 +16,10 @@
 //uint8_t txBufferSize = 0; // tamano a enviar
 
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
+	_Bool agafa_mesura = TRUE;
+}
 	/*
 	HAL_ADC_Start_IT(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1, 200);

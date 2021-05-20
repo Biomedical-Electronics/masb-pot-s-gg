@@ -207,76 +207,45 @@ void loop(void) {
 			__HAL_TIM_SET_COUNTER(&htim3, 0); //establim un counter a 0
 			HAL_TIM_Base_Start_IT(&htim3); //comencem el timer
 			agafa_mesura = FALSE;
-			uint32_t point = 1;
+			uint32_t point = 0;
 			i = 0;
 			uint32_t measurementTimeMs = caConfiguration.measurementTime * 1000;
-
-			HAL_ADC_Start(&hadc1);
-			HAL_ADC_PollForConversion(&hadc1, 200);
-			uint16_t adcValue = HAL_ADC_GetValue(&hadc1);
-
-			double vADC = (adcValue/sense)*(1023);
-			double vCell = (1.65 - vADC)*2;
-
-			HAL_ADC_Start(&hadc1);
-			HAL_ADC_PollForConversion(&hadc1, 200);
-			adcValue = HAL_ADC_GetValue(&hadc1);
-
-
-			double iCell = vCell/rTIA;
-
-			dades.point = point;
-			dades.timeMs = i;
-			dades.voltage = vCell;
-			dades.current = iCell;
-
-			i = i + caConfiguration.samplingPeriodMs;
-			point++;
-
-			MASB_COMM_S_sendData(dades);
-			agafa_mesura = FALSE;
-
-
 			while (i <= measurementTimeMs) {
 				if (agafa_mesura) {
-					HAL_ADC_Start(&hadc1);
+					HAL_ADC_Start_IT(&hadc1);
 					HAL_ADC_PollForConversion(&hadc1, 200);
 					uint16_t adcValue = HAL_ADC_GetValue(&hadc1);
 
-					vADC = (adcValue/sense)*(1023);
-					vCell = (1.65 - vADC)*2;
+					double vADC = (adcValue/sense)*(1023);
+					double vCell = (1.65 - vADC)*2;
 
-					HAL_ADC_Start(&hadc1);
+					HAL_ADC_Start_IT(&hadc1);
 					HAL_ADC_PollForConversion(&hadc1, 200);
 					adcValue = HAL_ADC_GetValue(&hadc1);
 
 
-					iCell = vCell/rTIA;
+					double iCell = vCell/rTIA;
 
-
-
+					i = i + caConfiguration.samplingPeriodMs;
+					point++;
 
 					dades.point = point;
 					dades.timeMs = i;
 					dades.voltage = vCell;
 					dades.current = iCell;
 
-					i = i + caConfiguration.samplingPeriodMs;
-					point++;
-
 					MASB_COMM_S_sendData(dades);
 					agafa_mesura = FALSE;
 
-					//HAL_ADC_Stop_IT(&hadc1);
+					HAL_ADC_Stop_IT(&hadc1);
 
 
 
 				}
-
+				HAL_TIM_Base_Stop_IT(&htim3); //parem timer
+				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); //parem mesura
+				Estado = IDLE;
 			}
-			HAL_TIM_Base_Stop_IT(&htim3); //parem timer
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); //parem mesura
-			Estado = IDLE;
 
 		break;
 

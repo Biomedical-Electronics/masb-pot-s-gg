@@ -10,15 +10,12 @@ struct Data_S data;
 int8_t	Estado; //variable para cambiar el estado de tipo de medida
 
 double vCell = 0;
-double cicles = 0;
-float vdac = 0;
 double rTIA = 1e5;
 double vObjetivo = 0;
 uint32_t i=0;
 const float sense = 3.3/4095; // factor de conversion de ADC a tension
 MCP4725_Handle_T hdac = NULL;
-volatile _Bool agafa_mesura = FALSE;
-_Bool agafa_mesura1 = FALSE;
+_Bool agafa_mesura = FALSE;
 
 
 
@@ -132,9 +129,9 @@ void loop(void) {
 	} else {
 		switch (Estado) {
 		case CV: //CV
-			/*vCell = cvConfiguration.eBegin;
+			/*VCell = cvConfiguration.eBegin;
 			float ts = cvConfiguration.eStep/cvConfiguration.scanRate;
-			vdac = 1.65-vCell/2;
+			vdac = 1.65-VCell/2;
 			MCP4725_SetOutputVoltage(hdac, vdac);
 			vObjetivo = cvConfiguration.eVertex1;
 			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); //obre relé, comença mesura
@@ -199,84 +196,41 @@ void loop(void) {
 
 		case CA: //CA
 			vCell = caConfiguration.eDc;
-			vdac = 1.65-vCell/2;
+			float vdac = 1.65-vCell/2;
 			MCP4725_SetOutputVoltage(hdac, vdac);
 			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); //tanquem relé (1), iniciem mesura
 			__HAL_TIM_SET_AUTORELOAD(&htim3, caConfiguration.samplingPeriodMs*10); //definim un periode de mesura
 			// definit sampling period afora?
 			__HAL_TIM_SET_COUNTER(&htim3, 0); //establim un counter a 0
 			HAL_TIM_Base_Start_IT(&htim3); //comencem el timer
-			agafa_mesura = FALSE;
-			uint32_t point = 1;
-			i = 0;
-			uint32_t measurementTimeMs = caConfiguration.measurementTime * 1000;
-
-			HAL_ADC_Start(&hadc1);
-			HAL_ADC_PollForConversion(&hadc1, 200);
-			uint16_t adcValue = HAL_ADC_GetValue(&hadc1);
-
-			double vADC = (adcValue/sense)*(1023);
-			double vCell = (1.65 - vADC)*2;
-
-			HAL_ADC_Start(&hadc1);
-			HAL_ADC_PollForConversion(&hadc1, 200);
-			adcValue = HAL_ADC_GetValue(&hadc1);
-
-
-			double iCell = vCell/rTIA;
-
-			dades.point = point;
-			dades.timeMs = i;
-			dades.voltage = vCell;
-			dades.current = iCell;
-
-			i = i + caConfiguration.samplingPeriodMs;
-			point++;
-
-			MASB_COMM_S_sendData(dades);
-			agafa_mesura = FALSE;
-
-
-			while (i <= measurementTimeMs) {
+			_Bool agafa_mesura = FALSE;
+			while (i<=caConfiguration.measurementTime) {
 				if (agafa_mesura) {
-					HAL_ADC_Start(&hadc1);
+					HAL_ADC_Start_IT(&hadc1);
 					HAL_ADC_PollForConversion(&hadc1, 200);
 					uint16_t adcValue = HAL_ADC_GetValue(&hadc1);
 
-					vADC = (adcValue/sense)*(1023);
-					vCell = (1.65 - vADC)*2;
+					double vADC = (adcValue/sense)*(1023);
+					double vCell = (1.65 - vADC)*2;
+					double iCell = vCell/rTIA;
 
-					HAL_ADC_Start(&hadc1);
-					HAL_ADC_PollForConversion(&hadc1, 200);
-					adcValue = HAL_ADC_GetValue(&hadc1);
-
-
-					iCell = vCell/rTIA;
-
-
-
-
-					dades.point = point;
-					dades.timeMs = i;
+					dades.point = 1;
+					dades.timeMs = caConfiguration.samplingPeriodMs * i;
 					dades.voltage = vCell;
 					dades.current = iCell;
-
-					i = i + caConfiguration.samplingPeriodMs;
-					point++;
 
 					MASB_COMM_S_sendData(dades);
 					agafa_mesura = FALSE;
 
-					//HAL_ADC_Stop_IT(&hadc1);
+					HAL_ADC_Stop_IT(&hadc1);
 
-
+					i=i*caConfiguration.samplingPeriodMs;
 
 				}
-
+				HAL_TIM_Base_Stop_IT(&htim3); //parem timer
+				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); //parem mesura
+				//canviar estat a idle?
 			}
-			HAL_TIM_Base_Stop_IT(&htim3); //parem timer
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); //parem mesura
-			Estado = IDLE;
 
 		break;
 
@@ -292,11 +246,6 @@ void loop(void) {
 
 	//Leer el estado en el que estamos (CV, CA ,IDLE)
 
-}
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-
-	agafa_mesura = TRUE;
 }
 
 

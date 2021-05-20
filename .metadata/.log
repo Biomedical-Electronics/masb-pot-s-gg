@@ -951,3 +951,47 @@ Binding(F4,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.cdt.ui.cViewScope,,,system)
+!SESSION 2021-05-20 10:45:41.182 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  C:\Users\riza_\Downloads\4o EBM\MICROCONTR\masb-workspace\masb-pot-s-gg\masb-pot-s-firmware\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\riza_\Downloads\4o EBM\MICROCONTR\masb-workspace\masb-pot-s-gg\masb-pot-s-firmware\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-05-20 10:51:14.572
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-05-20 10:51:14.712
+!MESSAGE Log4j initialized with config file C:\Users\riza_\Downloads\4o EBM\MICROCONTR\masb-workspace\masb-pot-s-gg\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-05-20 10:51:34.134
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-05-20 10:51:35.485
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-05-20 10:51:56.847
+!MESSAGE Indexed 'masb-pot-s-firmware' (34 sources, 99 headers) in 21.6 sec: 7,064 declarations; 46,999 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0037%)
+!SESSION 2021-05-20 10:54:15.720 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  C:\Users\riza_\Downloads\4o EBM\MICROCONTR\masb-workspace\masb-pot-s-gg\masb-pot-s-firmware\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\riza_\Downloads\4o EBM\MICROCONTR\masb-workspace\masb-pot-s-gg\masb-pot-s-firmware\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-05-20 10:54:28.734
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-05-20 10:54:28.840
+!MESSAGE Log4j initialized with config file C:\Users\riza_\Downloads\4o EBM\MICROCONTR\masb-workspace\masb-pot-s-gg\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-05-20 10:54:41.457
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-05-20 10:54:42.284
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-05-20 10:54:47.193
+!MESSAGE Indexed 'masb-pot-s-firmware' (34 sources, 99 headers) in 5.27 sec: 7,064 declarations; 46,999 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0037%)

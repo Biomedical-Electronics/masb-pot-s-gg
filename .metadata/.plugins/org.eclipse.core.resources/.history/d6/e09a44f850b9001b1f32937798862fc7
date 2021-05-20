@@ -230,9 +230,6 @@ void loop(void) {
 			dades.voltage = vCell;
 			dades.current = iCell;
 
-			i = i + caConfiguration.samplingPeriodMs;
-			point++;
-
 			MASB_COMM_S_sendData(dades);
 			agafa_mesura = FALSE;
 
@@ -254,15 +251,13 @@ void loop(void) {
 					iCell = vCell/rTIA;
 
 
-
+					i = i + caConfiguration.samplingPeriodMs;
+					point++;
 
 					dades.point = point;
 					dades.timeMs = i;
 					dades.voltage = vCell;
 					dades.current = iCell;
-
-					i = i + caConfiguration.samplingPeriodMs;
-					point++;
 
 					MASB_COMM_S_sendData(dades);
 					agafa_mesura = FALSE;

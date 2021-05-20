@@ -25,7 +25,6 @@ struct Handles_S {
 volatile struct Data_S dades;
 extern ADC_HandleTypeDef hadc1;
 extern TIM_HandleTypeDef htim3;
-extern TIM_HandleTypeDef htim2;
 
 // Prototypes.
 void setup(struct Handles_S *handles);
