@@ -131,12 +131,10 @@ void loop(void) {
 	} else {
 		switch (Estado) {
 		case CV: //CV
-
-			i=1;
-
-			double vCell_teorica = cvConfiguration.eBegin;
+			vCell = cvConfiguration.eBegin;
+			i=0;
 			uint16_t ts = (uint16_t)(cvConfiguration.eStep/cvConfiguration.scanRate * 1000.0);
-			vdac = 1.65-vCell_teorica/2;
+			vdac = 1.65-vCell/2;
 			MCP4725_SetOutputVoltage(hdac, vdac);
 			vObjetivo = cvConfiguration.eVertex1;
 			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); //obre relé, comença mesura
@@ -145,18 +143,18 @@ void loop(void) {
 			__HAL_TIM_SET_COUNTER(&htim3, 0); //establim un counter a 0
 			HAL_TIM_Base_Start_IT(&htim3); //comencem el timer
 			agafa_mesura = FALSE;
-			cicles = 1;
+			cicles = 0;
 			while (cicles <= cvConfiguration.cycles) {
 				if (agafa_mesura) {
 
-					double eStep = (vCell_teorica < vObjetivo)? cvConfiguration.eStep : -cvConfiguration.eStep;
+					double eStep = (vCell < vObjetivo)? cvConfiguration.eStep : -cvConfiguration.eStep;
 
 					HAL_ADC_Start(&hadc1);
 					HAL_ADC_PollForConversion(&hadc1, 200);
 					uint16_t adcValue = HAL_ADC_GetValue(&hadc1);
 
 					double vADC = (adcValue/sense)*(1023);
-					double vCell = (1.65 - vADC)*2;
+					vCell = (1.65 - vADC)*2;
 
 					HAL_ADC_Start(&hadc1);
 					HAL_ADC_PollForConversion(&hadc1, 200);
@@ -168,17 +166,15 @@ void loop(void) {
 
 					dades.point = i;
 					dades.timeMs = ts * i;
-					dades.voltage = vCell; // v real que recibe
-//					dades.voltage = vCell_teorica; - pruebas para ver la vteorica que le mandamos
+					dades.voltage = vCell;
 					dades.current = iCell;
-//					dades.current = vCell_teorica / 10e3; - pruebas para ver la corriente en función de una resistencia (una recta)
 							i++;
 					MASB_COMM_S_sendData(dades);
 					agafa_mesura = FALSE;
 
 
 
-					if (vCell_teorica == vObjetivo) {
+					if (vCell == vObjetivo) {
 						if (vObjetivo == cvConfiguration.eVertex1) {
 							vObjetivo = cvConfiguration.eVertex2;
 						} else {
@@ -187,14 +183,19 @@ void loop(void) {
 							} else {
 								vObjetivo = cvConfiguration.eVertex1;
 								cicles++;
-								//revisar: PROBLEMA, arriba a vObjetivo, es passa, i es queda atascat
+//								if ((cicles + 1) == cvConfiguration.cycles) {
+//									HAL_TIM_Base_Stop_IT(&htim2); //parem timer
+//									HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); //parem mesura
+//								} else {
+//									vObjetivo = cvConfiguration.eVertex1;
+//								}
 							}
 						}
 					} else {
-						if (abs(vCell_teorica + eStep) > abs(vObjetivo)) {
-							vCell_teorica = vObjetivo; //fijar tensión
+						if (abs(vCell + eStep) > abs(vObjetivo)) {
+							vCell = vObjetivo; //fijar tensión
 						} else {
-							vCell_teorica = vCell_teorica + eStep;
+							vCell = vCell + eStep;
 						}
 					}
 

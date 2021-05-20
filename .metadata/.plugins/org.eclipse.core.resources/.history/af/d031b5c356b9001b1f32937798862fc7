@@ -187,7 +187,12 @@ void loop(void) {
 							} else {
 								vObjetivo = cvConfiguration.eVertex1;
 								cicles++;
-								//revisar: PROBLEMA, arriba a vObjetivo, es passa, i es queda atascat
+//								if ((cicles + 1) == cvConfiguration.cycles) {
+//									HAL_TIM_Base_Stop_IT(&htim2); //parem timer
+//									HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); //parem mesura
+//								} else {
+//									vObjetivo = cvConfiguration.eVertex1;
+//								}
 							}
 						}
 					} else {

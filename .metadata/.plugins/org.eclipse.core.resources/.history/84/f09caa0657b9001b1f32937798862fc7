@@ -42,7 +42,7 @@
 	}
 }
 	//enviar los datos
-	void MASB_COMM_S_sendData(struct Data_S data) {
+	/*void MASB_COMM_S_sendData(struct Data_S data) {
 
 		   	saveLongAsByteArrayIntoBuffer(txBufferDecoded, 0, data.point);
 		   	saveLongAsByteArrayIntoBuffer(txBufferDecoded, 4, data.timeMs);

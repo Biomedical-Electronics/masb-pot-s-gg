@@ -168,10 +168,10 @@ void loop(void) {
 
 					dades.point = i;
 					dades.timeMs = ts * i;
-					dades.voltage = vCell; // v real que recibe
-//					dades.voltage = vCell_teorica; - pruebas para ver la vteorica que le mandamos
-					dades.current = iCell;
-//					dades.current = vCell_teorica / 10e3; - pruebas para ver la corriente en función de una resistencia (una recta)
+//					dades.voltage = vCell;
+					dades.voltage = vCell_teorica;
+//					dades.current = iCell;
+					dades.current = vCell_teorica / 10e3;
 							i++;
 					MASB_COMM_S_sendData(dades);
 					agafa_mesura = FALSE;
@@ -187,7 +187,12 @@ void loop(void) {
 							} else {
 								vObjetivo = cvConfiguration.eVertex1;
 								cicles++;
-								//revisar: PROBLEMA, arriba a vObjetivo, es passa, i es queda atascat
+//								if ((cicles + 1) == cvConfiguration.cycles) {
+//									HAL_TIM_Base_Stop_IT(&htim2); //parem timer
+//									HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); //parem mesura
+//								} else {
+//									vObjetivo = cvConfiguration.eVertex1;
+//								}
 							}
 						}
 					} else {
