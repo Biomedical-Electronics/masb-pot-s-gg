@@ -3,7 +3,6 @@
 #include "components/ad5280_driver.h"
 #include "components/mcp4725_driver.h"
 #include "components/i2c_lib.h"
-#include <math.h>
 
 struct CV_Configuration_S cvConfiguration;
 struct CA_Configuration_S caConfiguration;
@@ -184,11 +183,11 @@ void loop(void) {
 
 
 
-					if (sign * (vCell_teorica - vObjetivo) >= 0) {
-						if (fabs(vObjetivo - cvConfiguration.eVertex1) < 0.000001) {
+					if (sign * (vCell_teorica - vObjetivo) > 0) {
+						if (vObjetivo == cvConfiguration.eVertex1) {
 							vObjetivo = cvConfiguration.eVertex2;
 						} else {
-							if (fabs(vObjetivo - cvConfiguration.eVertex2) < 0.00001) {
+							if (vObjetivo == cvConfiguration.eVertex2) {
 								vObjetivo = cvConfiguration.eBegin;
 							} else {
 								vObjetivo = cvConfiguration.eVertex1;

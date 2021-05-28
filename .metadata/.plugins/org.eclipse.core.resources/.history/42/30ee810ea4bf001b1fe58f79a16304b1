@@ -184,7 +184,7 @@ void loop(void) {
 
 
 
-					if (sign * (vCell_teorica - vObjetivo) >= 0) {
+					if (sign * (vCell_teorica - vObjetivo) > 0) {
 						if (fabs(vObjetivo - cvConfiguration.eVertex1) < 0.000001) {
 							vObjetivo = cvConfiguration.eVertex2;
 						} else {

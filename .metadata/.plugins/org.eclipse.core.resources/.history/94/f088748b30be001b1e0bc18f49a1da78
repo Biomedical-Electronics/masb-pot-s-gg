@@ -3,7 +3,6 @@
 #include "components/ad5280_driver.h"
 #include "components/mcp4725_driver.h"
 #include "components/i2c_lib.h"
-#include <math.h>
 
 struct CV_Configuration_S cvConfiguration;
 struct CA_Configuration_S caConfiguration;
@@ -147,15 +146,10 @@ void loop(void) {
 			HAL_TIM_Base_Start_IT(&htim3); //comencem el timer
 			agafa_mesura = FALSE;
 			cicles = 1;
-
-
-
-
 			while (cicles <= cvConfiguration.cycles) {
 				if (agafa_mesura) {
 
 					double eStep = (vCell_teorica < vObjetivo)? cvConfiguration.eStep : -cvConfiguration.eStep;
-					double sign = (vCell_teorica < vObjetivo) ?  1 : -1;
 
 					HAL_ADC_Start(&hadc1);
 					HAL_ADC_PollForConversion(&hadc1, 200);
@@ -174,21 +168,21 @@ void loop(void) {
 
 					dades.point = i;
 					dades.timeMs = ts * i;
-					//dades.voltage = vCell; // v real que recibe
-					dades.voltage = vCell_teorica; // pruebas para ver la vteorica que le mandamos
-					//dades.current = iCell;
-					dades.current = vCell_teorica / 10e3; // pruebas para ver la corriente en función de una resistencia (una recta)
+					dades.voltage = vCell; // v real que recibe
+//					dades.voltage = vCell_teorica; - pruebas para ver la vteorica que le mandamos
+					dades.current = iCell;
+//					dades.current = vCell_teorica / 10e3; - pruebas para ver la corriente en función de una resistencia (una recta)
 							i++;
 					MASB_COMM_S_sendData(dades);
 					agafa_mesura = FALSE;
 
 
 
-					if (sign * (vCell_teorica - vObjetivo) >= 0) {
-						if (fabs(vObjetivo - cvConfiguration.eVertex1) < 0.000001) {
+					if (vCell_teorica == vObjetivo) {
+						if (vObjetivo == cvConfiguration.eVertex1) {
 							vObjetivo = cvConfiguration.eVertex2;
 						} else {
-							if (fabs(vObjetivo - cvConfiguration.eVertex2) < 0.00001) {
+							if (vObjetivo == cvConfiguration.eVertex2) {
 								vObjetivo = cvConfiguration.eBegin;
 							} else {
 								vObjetivo = cvConfiguration.eVertex1;
@@ -197,7 +191,7 @@ void loop(void) {
 							}
 						}
 					} else {
-						if (fabs(vCell_teorica + eStep) > fabs(vObjetivo)) {
+						if (abs(vCell_teorica + eStep) > abs(vObjetivo)) {
 							vCell_teorica = vObjetivo; //fijar tensión
 						} else {
 							vCell_teorica = vCell_teorica + eStep;
