@@ -1,24 +1,10 @@
-13:01:31 **** Incremental Build of configuration Debug for project masb-pot-s-firmware ****
+18:57:11 **** Incremental Build of configuration Debug for project masb-pot-s-firmware ****
 make -j4 all 
-arm-none-eabi-gcc "../Core/Src/components/stm32main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F401xE -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/components/stm32main.d" -MT"Core/Src/components/stm32main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/components/stm32main.o"
-../Core/Src/components/stm32main.c: In function 'loop':
-../Core/Src/components/stm32main.c:172:13: warning: unused variable 'iCell' [-Wunused-variable]
-      double iCell = vCell/rTIA;
-             ^~~~~
-arm-none-eabi-gcc -o "masb-pot-s-firmware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\riza_\Downloads\4o EBM\MICROCONTR\masb-workspace\masb-pot-s-gg\masb-pot-s-firmware\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="masb-pot-s-firmware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: masb-pot-s-firmware.elf
- 
-arm-none-eabi-objdump -h -S  masb-pot-s-firmware.elf  > "masb-pot-s-firmware.list"
-arm-none-eabi-objcopy  -O binary  masb-pot-s-firmware.elf  "masb-pot-s-firmware.bin"
 arm-none-eabi-size   masb-pot-s-firmware.elf 
    text	   data	    bss	    dec	    hex	filename
-  21880	    128	   2256	  24264	   5ec8	masb-pot-s-firmware.elf
+  22172	    128	   2256	  24556	   5fec	masb-pot-s-firmware.elf
 Finished building: default.size.stdout
  
-Finished building: masb-pot-s-firmware.bin
- 
-Finished building: masb-pot-s-firmware.list
- 
 
-13:01:33 Build Finished. 0 errors, 1 warnings. (took 2s.826ms)
+18:57:11 Build Finished. 0 errors, 0 warnings. (took 672ms)
 

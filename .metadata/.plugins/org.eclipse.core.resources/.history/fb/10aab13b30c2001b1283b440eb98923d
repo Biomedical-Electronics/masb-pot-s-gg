@@ -188,7 +188,6 @@ void loop(void) {
 
 
 					if (sign * (vCell_teorica - vObjetivo) >= 0) {
-						canvi_vObjetivo = TRUE;
 						if (fabs(vObjetivo - cvConfiguration.eVertex1) < 0.00000001) {
 							vObjetivo = cvConfiguration.eVertex2;
 						} else {
@@ -197,13 +196,14 @@ void loop(void) {
 							} else {
 								vObjetivo = cvConfiguration.eVertex1;
 								cicles++;
-
+								//revisar: PROBLEMA, arriba a vObjetivo, es passa, i es queda atascat
 							}
 						}
 					} else {
 						if (vObjetivo != 0){
 							if (fabs(vCell_teorica + eStep) > fabs(vObjetivo)) {
 								vCell_teorica = vObjetivo; //fijar tensión
+								canvi_vObjetivo = TRUE;
 							} else {
 								vCell_teorica = vCell_teorica + eStep;
 							}
@@ -211,6 +211,7 @@ void loop(void) {
 						else {
 							if (vCell_teorica + eStep > vObjetivo) {
 								vCell_teorica = vObjetivo; //fijar tensión
+								canvi_vObjetivo = TRUE;
 							} else {
 								vCell_teorica = vCell_teorica + eStep;
 							}

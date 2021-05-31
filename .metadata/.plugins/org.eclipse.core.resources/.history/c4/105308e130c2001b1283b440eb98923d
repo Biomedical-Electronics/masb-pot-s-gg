@@ -197,7 +197,7 @@ void loop(void) {
 							} else {
 								vObjetivo = cvConfiguration.eVertex1;
 								cicles++;
-
+								//revisar: PROBLEMA, arriba a vObjetivo, es passa, i es queda atascat
 							}
 						}
 					} else {

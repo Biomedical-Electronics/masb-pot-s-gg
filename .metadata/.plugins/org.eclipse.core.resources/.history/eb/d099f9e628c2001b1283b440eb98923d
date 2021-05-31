@@ -19,7 +19,6 @@ uint32_t i=0;
 const float sense = 3.3/4095; // factor de conversion de ADC a tension
 MCP4725_Handle_T hdac = NULL;
 volatile _Bool agafa_mesura = FALSE;
-volatile _Bool canvi_vObjetivo = FALSE;
 
 
 
@@ -155,8 +154,8 @@ void loop(void) {
 			while (cicles <= cvConfiguration.cycles) {
 				if (agafa_mesura) {
 
-					double sign = ((vCell_teorica + (sign*0.0000001) - vObjetivo)<0)?  1 : -1;
-					double eStep = ((vCell_teorica + (sign*0.0000001) - vObjetivo)<0)? cvConfiguration.eStep : -cvConfiguration.eStep;
+					double eStep = ((vCell_teorica + 0.0000001 - vObjetivo)<0)? cvConfiguration.eStep : -cvConfiguration.eStep;
+					double sign = ((vCell_teorica + 0.0000001 - vObjetivo)<0)?  1 : -1;
 
 					HAL_ADC_Start(&hadc1);
 					HAL_ADC_PollForConversion(&hadc1, 200);
@@ -172,23 +171,20 @@ void loop(void) {
 					vADC = (adcValue/sense)*(1023);
 					double iCell = vCell/rTIA;
 
-					if (!canvi_vObjetivo) {
-						dades.point = i;
-						dades.timeMs = ts * i;
-						//dades.voltage = vCell; // v real que recibe
-						dades.voltage = vCell_teorica; // pruebas para ver la vteorica que le mandamos
-						//dades.current = iCell;
-						dades.current = vCell_teorica / 10e3; // pruebas para ver la corriente en función de una resistencia (una recta)
-						i++;
-						agafa_mesura = FALSE;
-						MASB_COMM_S_sendData(dades);
-					} else {
-						canvi_vObjetivo = FALSE;
-					}
+
+					dades.point = i;
+					dades.timeMs = ts * i;
+					//dades.voltage = vCell; // v real que recibe
+					dades.voltage = vCell_teorica; // pruebas para ver la vteorica que le mandamos
+					//dades.current = iCell;
+					dades.current = vCell_teorica / 10e3; // pruebas para ver la corriente en función de una resistencia (una recta)
+							i++;
+					agafa_mesura = FALSE;
+					MASB_COMM_S_sendData(dades);
+
 
 
 					if (sign * (vCell_teorica - vObjetivo) >= 0) {
-						canvi_vObjetivo = TRUE;
 						if (fabs(vObjetivo - cvConfiguration.eVertex1) < 0.00000001) {
 							vObjetivo = cvConfiguration.eVertex2;
 						} else {
@@ -197,23 +193,14 @@ void loop(void) {
 							} else {
 								vObjetivo = cvConfiguration.eVertex1;
 								cicles++;
-
+								//revisar: PROBLEMA, arriba a vObjetivo, es passa, i es queda atascat
 							}
 						}
 					} else {
-						if (vObjetivo != 0){
-							if (fabs(vCell_teorica + eStep) > fabs(vObjetivo)) {
-								vCell_teorica = vObjetivo; //fijar tensión
-							} else {
-								vCell_teorica = vCell_teorica + eStep;
-							}
-						}
-						else {
-							if (vCell_teorica + eStep > vObjetivo) {
-								vCell_teorica = vObjetivo; //fijar tensión
-							} else {
-								vCell_teorica = vCell_teorica + eStep;
-							}
+						if (fabs(vCell_teorica + eStep) > fabs(vObjetivo)) {
+							vCell_teorica = vObjetivo; //fijar tensión
+						} else {
+							vCell_teorica = vCell_teorica + eStep;
 						}
 					}
 
