@@ -196,7 +196,6 @@ void loop(void) {
 					agafa_mesura = FALSE;
 					MASB_COMM_S_sendData(dades);
 
-
 					if (sign * (vCell_teorica - vObjetivo) >= 0) { // Si nos pasamos del objetivo...
 						if (fabs(vObjetivo - cvConfiguration.eVertex1)
 								< 0.00000001) {
@@ -237,9 +236,6 @@ void loop(void) {
 						}
 
 					}
-
-					vdac = calculateDacOutputVoltage(vCell_teorica);
-					MCP4725_SetOutputVoltage(hdac, vdac);
 
 				}
 
