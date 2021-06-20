@@ -75,8 +75,8 @@ A continuación se describe el conjunto de materiales que se han utilizado duran
 El siguiente diagrama de flujo corresponde al funcionamiento final de la aplicación desarrollada.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/FlujoFinal.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/FlujoFinal.png" alt="DiagramaFlujoFinal" />
+<a href="Docs/assets/FlujoFinal.png">
+<img src="Docs/assets/FlujoFinal.png" alt="DiagramaFlujoFinal" />
 </a>
 </p>
 
@@ -89,16 +89,16 @@ Una vez se inicia la medición, se envía una señal al microcontrolador, que re
 Los diagramas de flujo correspondientes a la voltametría cíclica y a la cronoamperometría se pueden ver a continuación.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Volta.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Volta.png" alt="DiagramaVoltametria" />
+<a href="Docs/assets/Volta.png">
+<img src="Docs/assets/Volta.png" alt="DiagramaVoltametria" />
 </a>
 </p>
 
 En la voltametría se realiza un barrido en tensión sobre la celda electroquímica. Para ello, se empieza desde `eBegin` y se va incrementando el valor en tensión en `eStep` hasta llegar a `eVertex1`. Una vez llegamos al primer vértice, cambiamos el objetivo para llegar al segundo vértice, también aplicando una diferencia de `eStep` en cada medición. Cuando ya hemos llegado al segundo vértice, volvemos a `eBegin`, completando un ciclo de la voltametría (y si tiene más ciclos, se repite el proceso).
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Crono.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Crono.png" alt="DiagramaCrono" />
+<a href="Docs/assets/Crono.png">
+<img src="Docs/assets/Crono.png" alt="DiagramaCrono" />
 </a>
 </p>
 
@@ -113,35 +113,35 @@ Los resultados finales obtenidos se pueden ver a continuación.
 En la primera imagen correspondiente a la voltametría cíclica, podemos ver la medición realizada con el potenciómetro para los parámetros especificados a la izquierda de la imagen.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1.png" alt="ResultadosVolta1" />
+<a href="Docs/assets/ResultadoVolta1.png">
+<img src="Docs/assets/ResultadoVolta1.png" alt="ResultadoVolta1" />
 </a>
 </p>
 
 En las siguientes imágenes de la voltametría, podemos ver la misma medición pero en el gráfico correspondiente al potencial respecto al tiempo transcurrido (se puede ver claramente el barrido desde `eBegin` hasta cada vértice), y también de la corriente respecto al tiempo.
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta2.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta2.png" alt="ResultadosVolta2" />
+<a href="Docs/assets/ResultadoVolta2.png">
+<img src="Docs/assets/ResultadoVolta2.png" alt="ResultadoVolta2" />
 </a>
 </p>
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta3.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta3.png" alt="ResultadosVolta3" />
+<a href="Docs/assets/ResultadoVolta3.png">
+<img src="Docs/assets/ResultadoVolta3.png" alt="ResultadoVolta3" />
 </a>
 </p>
 
 Una vez realizadas las pruebas sin la muestra y visto el correcto funcionamiento del programa, se procedió a realizar las medidas electroquímicas con una muestra de ferricianuro de potasio a diferentes concentraciones (1 mM y 5 mM). A continuación pueden verse los respectivos gráficos resultantes de la medición (primero el de 1mM, y después el de 5 mM).
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1mM.png" alt="ResultadosVolta1mM" />
+<a href="Docs/assets/ResultadoVolta1mM.png">
+<img src="Docs/assets/ResultadoVolta1mM.png" alt="ResultadosVolta1mM" />
 </a>
 </p>
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta5mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta5mM.png" alt="ResultadosVolta5mM" />
+<a href="Docs/assets/ResultadoVolta5mM.png">
+<img src="Docs/assets/ResultadoVolta5mM.png" alt="ResultadosVolta5mM" />
 </a>
 </p>
 
@@ -150,36 +150,36 @@ Una vez realizadas las pruebas sin la muestra y visto el correcto funcionamiento
 En la siguiente imagen, podemos ver una cronoamperometría realizada con el potenciómetro con la configuración que se especifica a la izquierda de la imagen.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1.png" alt="ResultadoCrono1" />
+<a href="Docs/assets/ResultadoCrono1.png">
+<img src="Docs/assets/ResultadoCrono1.png" alt="ResultadoCrono1" />
 </a>
 </p>
 
 A parte del gráfico con el potencial respecto a la corriente, también se han realizado los gráficos con el potencial y la corriente respecto al tiempo (se puede ver como el primer punto inicial está a 0, y luego se queda un valor fijo en la celda), que se pueden ver a continuación.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono2.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono2.png" alt="ResultadoCrono2" />
+<a href="Docs/assets/ResultadoCrono2.png">
+<img src="Docs/assets/ResultadoCrono2.png" alt="ResultadoCrono2" />
 </a>
 </p>
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono3.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono3.png" alt="ResultadoCrono3" />
+<a href="Docs/assets/ResultadoCrono3.png">
+<img src="Docs/assets/ResultadoCrono3.png" alt="ResultadoCrono3" />
 </a>
 </p>
 
 A continuación pueden verse los respectivos gráficos resultantes de la medición de una muestra de ferricianuro de potasio a diferentes concentraciones (primero el de 1mM, y después el de 5 mM).
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1mM.png" alt="ResultadoCrono1mM" />
+<a href="Docs/assets/ResultadoCrono1mM.png">
+<img src="Docs/assets/ResultadoCrono1mM.png" alt="ResultadoCrono1mM" />
 </a>
 </p>
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono5mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono5mM.png" alt="ResultadoCrono5mM" />
+<a href="Docs/assets/ResultadoCrono5mM.png">
+<img src="Docs/assets/ResultadoCrono5mM.png" alt="ResultadoCrono5mM" />
 </a>
 </p>
 
