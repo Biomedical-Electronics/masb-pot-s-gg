@@ -19,13 +19,13 @@ Concretamente, en éste proyecto programaremos un potenciostato para obtener las
 
 Ésta es una [técnica electroquímica](https://bsginstitute.com/bs-campus/blog/voltametria-ciclica-109) se utiliza principalmente para caracterizar procesos de reducción-oxidación, propiedades electrocatalíticas y estudio de intermediarios de reacción.
 
-Para ello, la voltametría cíclica se basa en aplicar un barrido de potencial entre 2 tensiones fijadas antes del inicio de la medición, los potenciales de corte ( [_eVertex1_](#evertex1) y [_eVertex2_](#evertex2)). Este potencial se inicializa a un voltaje predefinido ([eBegin](#ebegin)) y varía linealmente una cantidad fija ([eStep](#estep)) hasta llegar al  primer potencial de corte. Luego canvía de dirección hasta llegar al segundo. Obteniendo un barrido triangular que se repite un número de ciclos concretos. Éste se puede gráficar obteniendo mediciones equiedistantes temporalmente cada [scanRate](#scanrate).
+Para ello, la voltametría cíclica se basa en aplicar un barrido de potencial entre 2 tensiones fijadas antes del inicio de la medición, los potenciales de corte ( _eVertex1_ y _eVertex2_). Este potencial se inicializa a un voltaje predefinido (eBegin) y varía linealmente una cantidad fija (eStep) hasta llegar al  primer potencial de corte. Luego canvía de dirección hasta llegar al segundo. Obteniendo un barrido triangular que se repite un número de ciclos concretos. Éste se puede gráficar obteniendo mediciones equiedistantes temporalmente cada scanRate.
 
 ### **Cronoamperometría**
 
 La segunda técnica electroquímica que hemos utilizado para la medición es la cronoamperometría. Esta técnica se basa en el estudio de la variación de corriente en nuestro WE con el paso del tiempo.
 
-Para ello, se introduce el WE a la disolución que se quiere caracterizar y se aplica un potencial constante ([eDC](#edc)). Luego se aplica un señal en escalón que hará variar súbitamente el potencial produciendo un gran pico de tensión. Luego, el ferrocianuro de potasio entrará en un proceso de oxidación, reduciendo la tensión hasta quedar, finalmente, estabilizado. De esta manera se puede medir el corriente que pasa por una celda en un periodo de tiempo determinado.
+Para ello, se introduce el WE a la disolución que se quiere caracterizar y se aplica un potencial constante (eDC). Luego se aplica un señal en escalón que hará variar súbitamente el potencial produciendo un gran pico de tensión. Luego, el ferrocianuro de potasio entrará en un proceso de oxidación, reduciendo la tensión hasta quedar, finalmente, estabilizado. De esta manera se puede medir el corriente que pasa por una celda en un periodo de tiempo determinado.
 
 
 
@@ -65,8 +65,8 @@ A continuación se describe el conjunto de materiales que se han utilizado duran
 
 - Potenciostato, utilizado para establecer las diferéncias de tensión. Éste tiene un _front-end_ específico para que el usuario pueda modificar la entrada  manualmente.
 - Placa de Evaluación (EVB) NUCLEO-F401RE, que procesará los _inputs_ del potenciostato (_back-end_).
-- Software de programación. Para programar las técnicas electroquímicas en nuestra EVB, se ha utilizado el ambiente de programación [STM32CubeIDE](), que utiliza el lunguaje C/C++
-- Para la medición de las técnicas electroquímicas se ha utilizado la aplicación [ViSens](), que nos permite tanto realizar una CA como una VC.
+- Software de programación. Para programar las técnicas electroquímicas en nuestra EVB, se ha utilizado el ambiente de programación [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html), que utiliza el lunguaje C/C++
+- Para la medición de las técnicas electroquímicas se ha utilizado la aplicación [ViSens](https://github.com/Albert-Alvarez/viSens-S/releases/tag/v0.2.0), que nos permite tanto realizar una CA como una VC.
 
 
 ## **Aplicación final**
