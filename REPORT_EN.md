@@ -9,42 +9,38 @@
 
 ## **Introduction**
 
-This project consists of the programming of a [potentiotate] with the aim of characterizing a sample of [potassium ferrocyanide ](https://en.wikipedia.org/wiki/Potassium_ferricyanide)([Fe(CN)6]3) to different contentrations on a potassium chloride [buffer](https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Acids_and_Bases/Buffers).
+This project consists of the programming of a [potentiostate](https://en.wikipedia.org/wiki/Potentiostat) with the aim of characterizing a sample of [potassium ferrocyanide](https://en.wikipedia.org/wiki/Potassium_ferricyanide)([Fe(CN)6]3) to different contentrations on a potassium chloride [buffer](https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Acids_and_Bases/Buffers).
 
-The main function of a potentiotate is to control a [electrochemical cell]https://en.wikipedia.org/wiki/Electrochemical_cell) or 3-eletrode cell, so that it controls the potential differentiating between one or more working electrodes (WE) combined with a reference electrode and an auxiliary electrode.
+The main function of a potentiotate is to control a [electrochemical cell](https://en.wikipedia.org/wiki/Electrochemical_cell) or 3-eletrode cell, so that it controls the potential differentiating between one or more working electrodes (WE) combined with a reference electrode and an auxiliary electrode.
 
 Specifically, in this project we will program a potentiostrate to obtain the intensity and voltage measurements detected in our electrochemical cell from **two** different techniques: chronoamperometry [(CA)](#CA) and cyclic voltammetry [(VC)](#CV).
 
-### **Cyclic voltammetry (CV)**
+### **Cyclic voltammetry**
 
 This is an [electrochemical technique](https://chem.libretexts.org/Bookshelves/Analytical_Chemistry/Supplemental_Modules_(Analytical_Chemistry)/Instrumental_Analysis/Cyclic_Voltammetry) is mainly used to characterize reduction-oxidation processes, electrocatalytic properties and study of reaction intermediates.
 
-To do this, cyclic voltammetry is based on applying a potential sweep between 2 voltages fixed before the start of the measurement, the cutting potentials ( _eVertex1_ and _eVertex2_). This potential is initialized to a predefined voltage (eBegin) and varies linearly by a fixed amount (eStep) until it reaches the first cutoff potential. Then he went in the direction until he reached the second. Obtaining a triangular sweep that repeats a number of specific cycles. This can be plotled by obtaining temporally equidistant measurements each scanRate.
+To do this, cyclic voltammetry is based on applying a potential sweep between 2 voltages fixed before the start of the measurement, the cutting potentials ( _eVertex1_ and _eVertex2_). This potential is initialized to a predefined voltage (_eBegin_) and varies linearly by a fixed amount (_eStep_) until it reaches the first cutoff potential. Then he went in the direction until he reached the second. Obtaining a triangular sweep that repeats a number of specific cycles. This can be plotled by obtaining temporally equidistant measurements each scanRate.
 
 ### **Chronoamperometry**
 
 The second electrochemical technique we have used for measurement is chronoamperometry. This technique is based on the study of the current variation in our WE over time.
 
-To do this, the WE is introduced to the solution to be characterized and a constant potential is applied (eDC). Then a step signal is applied that will suddenly vary the potential producing a large voltage peak. Then, the potassium ferrocyanide will enter an oxidation process, reducing the tension until it is finally stabilized. In this way you can measure the current that passes through a cell in a given period of time.
+To do this, the WE is introduced to the solution to be characterized and a constant potential is applied (_eDC_). Then a step signal is applied that will suddenly vary the potential producing a large voltage peak. Then, the potassium ferrocyanide will enter an oxidation process, reducing the tension until it is finally stabilized. In this way you can measure the current that passes through a cell in a given period of time.
 
 
 
 ## **Table of Contents**
 
-- [Introduction](#este-project-consists)
-  - [Cyclic voltammetry](#voltametria-cyclical)
-  - [Chronoamperometry](#cronoamperometria)
-- [Objectives](#objetivos)
-- [Materials](#materiales)
-  - [_Front-end_](#front-end)
-  - [_Back-end_](#back-end)
-  - [Programming Software](#stm32cubeide)
-  - [Measurement](#visens)
-- [Final Application](#aplicación-final)
-- [Results](#resultados)
-  - [Cyclic Voltammetry Results](#resultados-voltametria-ciclica)
-  - [Results Chronoamperometry](#resultados-chronoamperometry)
-- [Conclusions](#conclusiones)
+- [Introduction](#introduction)
+  - [Cyclic voltammetry](#cyclic-voltammetry)
+  - [Chronoamperometry](#chronoamperometry)
+- [Objectives](#objectives)
+- [Materials](#materials)
+- [Final Application](#final-application)
+- [Results](#results)
+  - [Cyclic Voltammetry Results](#cyclic-voltammetry-results)
+  - [Results Chronoamperometry](#chronoamperometry-results)
+- [Conclusions](#conclusions)
 
 
 
@@ -123,14 +119,14 @@ In the first image corresponding to the cyclic voltammetry, we can see the measu
 In the following images of the voltametry, we can see the same measurement but in the graph corresponding to the potential with respect to the elapsed time (you can clearly see the sweep from 'eBegin' to each vertex), and also of the current with respect to time.
 
 <p align="center">
-<a href="Docs/assets/ResultadoVolta1mM.png">
-<img src="Docs/assets/ResultadoVolta1mM.png" alt="ResultadosVolta1mM" />
+<a href="Docs/assets/ResultadoVolta2.png">
+<img src="Docs/assets/ResultadoVolta2.png" alt="ResultadosVolta2" />
 </a>
 </p>
 
 <p align="center">
-<a href="Docs/assets/ResultadoVolta5mM.png">
-<img src="Docs/assets/ResultadoVolta5mM.png" alt="ResultadosVolta5mM" />
+<a href="Docs/assets/ResultadoVolta3.png">
+<img src="Docs/assets/ResultadoVolta3.png" alt="ResultadosVolta3" />
 </a>
 </p>
 
