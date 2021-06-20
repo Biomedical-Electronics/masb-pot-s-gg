@@ -138,15 +138,15 @@ In the following images of the voltametry, we can see the same measurement but i
 Once the tests were carried out without the sample and having seen the correct functioning of the program, we proceeded to perform the electrochemical measurements with a sample of potassium ferricyanide at different concentrations (1 mM and 5 mM). Below you can see the respective graphs resulting from the measurement (first the 1mM, and then the 5mM).
 
 <p align="center">
-<a href="Docs/assets/ResultadoVolta1mM.png">
-<img src="Docs/assets/ResultadoVolta1mM.png" alt="ResultsVolta1mM" />
+<a href="Docs/assets/ResultadosVolta1mM.png">
+<img src="Docs/assets/ResultadosVolta1mM.png" alt="ResultsVolta1mM" />
 </a>
 </p>
 
 
 <p align="center">
-<a href="Docs/assets/ResultadoVolta5mM.png">
-<img src="Docs/assets/ResultadoVolta5mM.png" alt="ResultsVolta5mM" />
+<a href="Docs/assets/ResultadosVolta5mM.png">
+<img src="Docs/assets/ResultadosVolta5mM.png" alt="ResultsVolta5mM" />
 </a>
 </p>
 
