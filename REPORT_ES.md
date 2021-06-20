@@ -134,14 +134,14 @@ En las siguientes imágenes de la voltametría, podemos ver la misma medición p
 Una vez realizadas las pruebas sin la muestra y visto el correcto funcionamiento del programa, se procedió a realizar las medidas electroquímicas con una muestra de ferricianuro de potasio a diferentes concentraciones (1 mM y 5 mM). A continuación pueden verse los respectivos gráficos resultantes de la medición (primero el de 1mM, y después el de 5 mM).
 
 <p align="center">
-<a href="Docs/assets/ResultadoVolta1mM.png">
-<img src="Docs/assets/ResultadoVolta1mM.png" alt="ResultadosVolta1mM" />
+<a href="Docs/assets/ResultadosVolta1mM.png">
+<img src="Docs/assets/ResultadosVolta1mM.png" alt="ResultadosVolta1mM" />
 </a>
 </p>
 
 <p align="center">
-<a href="Docs/assets/ResultadoVolta5mM.png">
-<img src="Docs/assets/ResultadoVolta5mM.png" alt="ResultadosVolta5mM" />
+<a href="Docs/assets/ResultadosVolta5mM.png">
+<img src="Docs/assets/ResultadosVolta5mM.png" alt="ResultadosVolta5mM" />
 </a>
 </p>
 
