@@ -1,7 +1,6 @@
-[//]: https://www.linkedin.com/in/liza-s-97a01597 "Contact Linkedin: Liza, "
-[//]: https://www.linkedin.com/in/eduard-sol%C3%A9-galindo-07a1891ba/ "Edu ""
+[//]: # (Contacto Linkedin:Liza https://www.linkedin.com/in/liza-s-97a01597, Edu https://www.linkedin.com/in/eduard-sol%C3%A9-galindo-07a1891ba/ )
 
-#### Liza Shchasnovich and Eduard Solé
+#### Liza Shchasnovich y Eduard Solé
 
 # **MASB project: Programming a potentiostate**
 
@@ -76,7 +75,7 @@ The following flowchart corresponds to the final operation of the developed appl
 
 <p align="center">
 <a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/FlujoFinal.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/FlujoFinal.png" alt="EndFlow Diagram" />
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/FlujoFinal.png" alt="DiagramaFlujoFinal" />
 </a>
 </p>
 
@@ -91,16 +90,15 @@ The flowcharts corresponding to cyclic voltammetry and chronoamperometry can be 
 
 <p align="center">
 <a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Volta.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Volta.png" alt="DiagramVoltametria" />
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Volta.png" alt="DiagramaVoltametria" />
 </a>
 </p>
 
 
 In the voltametry a tension sweep is performed on the electrochemical cell. To do this, you start from 'eBegin' and increase the value in tension in 'eStep' until you reach 'eVertex1'. Once we reach the first vertex, we change the target to reach the second vertex, also applying an 'eStep' difference in each measurement. When we have reached the second vertex, we return to 'eBegin', completing a cycle of the voltammetry (and if it has more cycles, the process is repeated).
-
 <p align="center">
 <a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Crono.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Crono.png" alt="DiagramCron" />
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Crono.png" alt="DiagramaCrono" />
 </a>
 </p>
 
@@ -117,7 +115,7 @@ In the first image corresponding to the cyclic voltammetry, we can see the measu
 
 <p align="center">
 <a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1.png" alt="ResultsVolta1" />
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1.png" alt="ResultadosVolta1" />
 </a>
 </p>
 
@@ -125,15 +123,14 @@ In the first image corresponding to the cyclic voltammetry, we can see the measu
 In the following images of the voltametry, we can see the same measurement but in the graph corresponding to the potential with respect to the elapsed time (you can clearly see the sweep from 'eBegin' to each vertex), and also of the current with respect to time.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta2.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta2.png" alt="ResultsVolta2" />
+<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1mM.png">
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1mM.png" alt="ResultadosVolta1mM" />
 </a>
 </p>
 
-
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta3.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta3.png" alt="ResultsVolta3" />
+<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta5mM.png">
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta5mM.png" alt="ResultadosVolta5mM" />
 </a>
 </p>
 
@@ -160,21 +157,22 @@ In the following image, we can see a chronoamperometry performed with the potent
 
 <p align="center">
 <a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1.png" alt="ResultCrono1" />
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1.png" alt="ResultadoCrono1" />
 </a>
 </p>
+
 
 Apart from the graph with the potential with respect to the current, the graphs with the potential and the current with respect to time have also been made (you can see how the first starting point is at 0, and then a fixed value remains in the cell), which can be seen below.
 
 <p align="center">
 <a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono2.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono2.png" alt="ResultCrono2" />
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono2.png" alt="ResultadoCrono2" />
 </a>
 </p>
 
 <p align="center">
 <a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono3.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono3.png" alt="ResultCrono3" />
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono3.png" alt="ResultadoCrono3" />
 </a>
 </p>
 
@@ -182,13 +180,13 @@ Below you can see the respective graphs resulting from the measurement of a samp
 
 <p align="center">
 <a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1mM.png" alt="ResultCrono1mM" />
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1mM.png" alt="ResultadoCrono1mM" />
 </a>
 </p>
 
 <p align="center">
 <a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono5mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono5mM.png" alt="ResultCrono5mM" />
+<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono5mM.png" alt="ResultadoCrono5mM" />
 </a>
 </p>
 
