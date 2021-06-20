@@ -1,0 +1,63 @@
+/**
+  ******************************************************************************
+  * @file		cyclic_voltammetry.c
+  * @brief		Gestión de la voltammetría cíclica.
+  * @author		Albert Álvarez Carulla
+  * @copyright	Copyright 2020 Albert Álvarez Carulla. All rights reserved.
+  ******************************************************************************
+  */
+
+#include "components/cyclic_voltammetry.h"
+#include "components/masb_comm_s.h"
+
+uint32_t eStep = 0.005; //V
+uint32_t scanRate = 0.01; //V/s
+int32_t periode = (eStep/scanRate); //segons
+uint32_t i=0;
+double rTia = 1e5;
+
+uint32_t resADC = 1023;
+uint32_t Vref = 3.3;
+
+struct CV_Configuration_S MASB_COMM_S_getCvConfiguration(void){
+//Definim la configuracio de la voltametria cíclica
+	struct CV_Configuration_S cvConfiguration;
+	cvConfiguration.eBegin = Vcell;
+	cvConfiguration.eVertex1 = Vobj;
+	cvConfiguration.eVertex2 = vmin;
+	cvConfiguration.cycles = ciclos;
+	cvConfiguration.eStep = eStep; //V
+	cvConfiguration.scanRate = scanRate; //V/s
+
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) { //ISR del timer
+	HAL_ADC_Start_IT(&hadc1); //Inicialitzem el ADC
+	HAL_ADC_PollForConversion(&hadc, 200); //Convertim les dades
+	uint16_t Vsenal = HAL_ADC_GetValue(&hadc); //Recollim les dades del ADC
+
+	double vAdc = (Vsenal/Vref) * (resADC);
+	double vCell = (1.65-vAdc)*2;
+	double vDac = 1.65 - (vCell/2);
+	double iCell = ((vAdc-1.65)*2)/rTia;
+
+	volatile struct Data_S dades {
+		dades.point = 1;
+		dades.timeMs = periode * i;
+		dades.voltage = vCell;
+		dades.current = iCell;
+	} mesures;
+
+
+
+	MASB_COMM_S_sendData(dades);
+
+	HAL_ADC_Stop_IT(&hadc);
+
+	i++;
+
+	if(i > 24) {
+		HAL_TIM_Base_Stop_IT(&htim);
+	}
+}
+

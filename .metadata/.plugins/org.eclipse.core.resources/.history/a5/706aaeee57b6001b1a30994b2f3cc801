@@ -1,0 +1,45 @@
+/**
+  ******************************************************************************
+  * @file		cyclic_voltammetry.c
+  * @brief		Gestión de la voltammetría cíclica.
+  * @author		Albert Álvarez Carulla
+  * @copyright	Copyright 2020 Albert Álvarez Carulla. All rights reserved.
+  ******************************************************************************
+  */
+
+#include "components/cyclic_voltammetry.h"
+#include "components/masb_comm_s.h"
+
+
+
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) { //ISR del timer
+	HAL_ADC_Start_IT(&hadc1); //Inicialitzem el ADC
+	HAL_ADC_PollForConversion(&hadc1, 200); //Convertim les dades
+	uint16_t Vsenal = HAL_ADC_GetValue(&hadc1); //Recollim les dades del ADC
+
+	double vAdc = (Vsenal/Vref) * (resADC);
+	double vCell = (1.65-vAdc)*2;
+	double vDac = 1.65 - (vCell/2);
+	double iCell = ((vAdc-1.65)*2)/rTia;
+
+	volatile struct Data_S dades {
+		dades.point = 1;
+		dades.timeMs = periode * i;
+		dades.voltage = vCell;
+		dades.current = iCell;
+	};
+
+
+
+	MASB_COMM_S_sendData(dades);
+
+	HAL_ADC_Stop_IT(&hadc1);
+
+	i++;
+
+	if(i > 24) {
+		HAL_TIM_Base_Stop_IT(&htim);
+	}
+}
+

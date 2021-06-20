@@ -1,0 +1,56 @@
+17:37:04 **** Incremental Build of configuration Debug for project masb-pot-s-firmware ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/components/stm32main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F401xE -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/components/stm32main.d" -MT"Core/Src/components/stm32main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/components/stm32main.o"
+../Core/Src/components/stm32main.c: In function 'setup':
+../Core/Src/components/stm32main.c:29:22: warning: passing argument 1 of 'MASB_COMM_S_setUart' from incompatible pointer type [-Wincompatible-pointer-types]
+  MASB_COMM_S_setUart(handles->htim);
+                      ^~~~~~~
+In file included from ../Core/Inc/components/stm32main.h:13:0,
+                 from ../Core/Src/components/stm32main.c:2:
+../Core/Inc/components/masb_comm_s.h:44:6: note: expected 'UART_HandleTypeDef * {aka struct __UART_HandleTypeDef *}' but argument is of type 'TIM_HandleTypeDef * {aka struct <anonymous> *}'
+ void MASB_COMM_S_setUart(UART_HandleTypeDef *newHuart);
+      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/components/stm32main.c:30:22: warning: passing argument 1 of 'MASB_COMM_S_setUart' from incompatible pointer type [-Wincompatible-pointer-types]
+  MASB_COMM_S_setUart(handles->hi2c);
+                      ^~~~~~~
+In file included from ../Core/Inc/components/stm32main.h:13:0,
+                 from ../Core/Src/components/stm32main.c:2:
+../Core/Inc/components/masb_comm_s.h:44:6: note: expected 'UART_HandleTypeDef * {aka struct __UART_HandleTypeDef *}' but argument is of type 'I2C_HandleTypeDef * {aka struct <anonymous> *}'
+ void MASB_COMM_S_setUart(UART_HandleTypeDef *newHuart);
+      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/components/stm32main.c:31:22: warning: passing argument 1 of 'MASB_COMM_S_setUart' from incompatible pointer type [-Wincompatible-pointer-types]
+  MASB_COMM_S_setUart(handles->hadc);
+                      ^~~~~~~
+In file included from ../Core/Inc/components/stm32main.h:13:0,
+                 from ../Core/Src/components/stm32main.c:2:
+../Core/Inc/components/masb_comm_s.h:44:6: note: expected 'UART_HandleTypeDef * {aka struct __UART_HandleTypeDef *}' but argument is of type 'ADC_HandleTypeDef * {aka struct <anonymous> *}'
+ void MASB_COMM_S_setUart(UART_HandleTypeDef *newHuart);
+      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/components/stm32main.c: In function 'loop':
+../Core/Src/components/stm32main.c:37:25: error: 'htim3' undeclared (first use in this function)
+  HAL_TIM_Base_Start_IT(&htim3);
+                         ^~~~~
+../Core/Src/components/stm32main.c:37:25: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/components/stm32main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/components/stm32main.c:67:24: error: 'hadc1' undeclared (first use in this function)
+      HAL_ADC_Start_IT(&hadc1);
+                        ^~~~~
+../Core/Src/components/stm32main.c:90:28: warning: passing argument 1 of 'HAL_TIM_Base_Stop_IT' from incompatible pointer type [-Wincompatible-pointer-types]
+       HAL_TIM_Base_Stop_IT(&htim3);
+                            ^
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:400:0,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/components/stm32main.h:11,
+                 from ../Core/Src/components/stm32main.c:2:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1789:19: note: expected 'TIM_HandleTypeDef * {aka struct <anonymous> *}' but argument is of type 'TIM_HandleTypeDef ** {aka struct <anonymous> **}'
+ HAL_StatusTypeDef HAL_TIM_Base_Stop_IT(TIM_HandleTypeDef *htim);
+                   ^~~~~~~~~~~~~~~~~~~~
+At top level:
+../Core/Src/components/stm32main.c:66:10: warning: 'HAL_TIM_PeriodElapsedCallback' defined but not used [-Wunused-function]
+     void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim3) {
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/components/subdir.mk:38: Core/Src/components/stm32main.o] Error 1
+"make -j3 all" terminated with exit code 2. Build might be incomplete.
+
+17:37:05 Build Failed. 3 errors, 5 warnings. (took 469ms)
+
