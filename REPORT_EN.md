@@ -89,16 +89,16 @@ Once the measurement starts, a signal is sent to the microcontroller, which rece
 The flowcharts corresponding to cyclic voltammetry and chronoamperometry can be seen below.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Volta.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Volta.png" alt="DiagramaVoltametria" />
+<a href="Docs/assets/Volta.png">
+<img src="Docs/assets/Volta.png" alt="DiagramaVoltametria" />
 </a>
 </p>
 
 
 In the voltametry a tension sweep is performed on the electrochemical cell. To do this, you start from 'eBegin' and increase the value in tension in 'eStep' until you reach 'eVertex1'. Once we reach the first vertex, we change the target to reach the second vertex, also applying an 'eStep' difference in each measurement. When we have reached the second vertex, we return to 'eBegin', completing a cycle of the voltammetry (and if it has more cycles, the process is repeated).
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Crono.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/Crono.png" alt="DiagramaCrono" />
+<a href="Docs/assets/Crono.png">
+<img src="Docs/assets/Crono.png" alt="DiagramaCrono" />
 </a>
 </p>
 
@@ -114,8 +114,8 @@ The final results obtained can be seen below.
 In the first image corresponding to the cyclic voltammetry, we can see the measurement made with the potentiometer for the parameters specified to the left of the image.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1.png" alt="ResultadosVolta1" />
+<a href="Docs/assets/ResultadoVolta1.png">
+<img src="Docs/assets/ResultadoVolta1.png" alt="ResultadosVolta1" />
 </a>
 </p>
 
@@ -123,14 +123,14 @@ In the first image corresponding to the cyclic voltammetry, we can see the measu
 In the following images of the voltametry, we can see the same measurement but in the graph corresponding to the potential with respect to the elapsed time (you can clearly see the sweep from 'eBegin' to each vertex), and also of the current with respect to time.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1mM.png" alt="ResultadosVolta1mM" />
+<a href="Docs/assets/ResultadoVolta1mM.png">
+<img src="Docs/assets/ResultadoVolta1mM.png" alt="ResultadosVolta1mM" />
 </a>
 </p>
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta5mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta5mM.png" alt="ResultadosVolta5mM" />
+<a href="Docs/assets/ResultadoVolta5mM.png">
+<img src="Docs/assets/ResultadoVolta5mM.png" alt="ResultadosVolta5mM" />
 </a>
 </p>
 
@@ -138,15 +138,15 @@ In the following images of the voltametry, we can see the same measurement but i
 Once the tests were carried out without the sample and having seen the correct functioning of the program, we proceeded to perform the electrochemical measurements with a sample of potassium ferricyanide at different concentrations (1 mM and 5 mM). Below you can see the respective graphs resulting from the measurement (first the 1mM, and then the 5mM).
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta1mM.png" alt="ResultsVolta1mM" />
+<a href="Docs/assets/ResultadoVolta1mM.png">
+<img src="Docs/assets/ResultadoVolta1mM.png" alt="ResultsVolta1mM" />
 </a>
 </p>
 
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta5mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoVolta5mM.png" alt="ResultsVolta5mM" />
+<a href="Docs/assets/ResultadoVolta5mM.png">
+<img src="Docs/assets/ResultadoVolta5mM.png" alt="ResultsVolta5mM" />
 </a>
 </p>
 
@@ -156,8 +156,8 @@ Once the tests were carried out without the sample and having seen the correct f
 In the following image, we can see a chronoamperometry performed with the potentiometer with the configuration that is specified to the left of the image.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1.png" alt="ResultadoCrono1" />
+<a href="Docs/assets/ResultadoCrono1.png">
+<img src="Docs/assets/ResultadoCrono1.png" alt="ResultadoCrono1" />
 </a>
 </p>
 
@@ -165,28 +165,28 @@ In the following image, we can see a chronoamperometry performed with the potent
 Apart from the graph with the potential with respect to the current, the graphs with the potential and the current with respect to time have also been made (you can see how the first starting point is at 0, and then a fixed value remains in the cell), which can be seen below.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono2.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono2.png" alt="ResultadoCrono2" />
+<a href="Docs/assets/ResultadoCrono2.png">
+<img src="Docs/assets/ResultadoCrono2.png" alt="ResultadoCrono2" />
 </a>
 </p>
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono3.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono3.png" alt="ResultadoCrono3" />
+<a href="Docs/assets/ResultadoCrono3.png">
+<img src="Docs/assets/ResultadoCrono3.png" alt="ResultadoCrono3" />
 </a>
 </p>
 
 Below you can see the respective graphs resulting from the measurement of a sample of potassium ferricyaride at different concentrations (first 1mM, then 5 mM).
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono1mM.png" alt="ResultadoCrono1mM" />
+<a href="Docs/assets/ResultadoCrono1mM.png">
+<img src="Docs/assets/ResultadoCrono1mM.png" alt="ResultadoCrono1mM" />
 </a>
 </p>
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono5mM.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/ResultadoCrono5mM.png" alt="ResultadoCrono5mM" />
+<a href="Docs/assets/ResultadoCrono5mM.png">
+<img src="Docs/assets/ResultadoCrono5mM.png" alt="ResultadoCrono5mM" />
 </a>
 </p>
 
