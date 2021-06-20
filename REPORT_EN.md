@@ -74,8 +74,8 @@ The following describes the set of materials that have been used during the proj
 The following flowchart corresponds to the final operation of the developed application.
 
 <p align="center">
-<a href="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/FlujoFinal.png">
-<img src="https://github.com/Biomedical-Electronics/masb-pot-s-gg/tree/master/Docs/assets/FlujoFinal.png" alt="DiagramaFlujoFinal" />
+<a href="Docs/assets/FlujoFinal.png">
+<img src="Docs/assets/FlujoFinal.png" alt="DiagramaFlujoFinal" />
 </a>
 </p>
 
