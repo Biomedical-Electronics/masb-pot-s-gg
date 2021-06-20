@@ -16,10 +16,7 @@
 //uint8_t txBufferSize = 0; // tamano a enviar
 
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
-	_Bool agafa_mesura = TRUE;
-}
 	/*
 	HAL_ADC_Start_IT(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1, 200);
@@ -45,7 +42,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	}
 }
 	//enviar los datos
-	/*void MASB_COMM_S_sendData(struct Data_S data) {
+	void MASB_COMM_S_sendData(struct Data_S data) {
 
 		   	saveLongAsByteArrayIntoBuffer(txBufferDecoded, 0, data.point);
 		   	saveLongAsByteArrayIntoBuffer(txBufferDecoded, 4, data.timeMs);

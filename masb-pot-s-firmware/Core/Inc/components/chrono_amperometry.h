@@ -4,6 +4,7 @@
 
 #include "stm32f4xx_hal.h"
 
+
 struct CA_Configuration_S {
 	double eDc;
 	uint32_t samplingPeriodMs;

@@ -17,6 +17,7 @@ struct Handles_S {
 	I2C_HandleTypeDef * hi2c;
 	ADC_HandleTypeDef * hadc1;
 	TIM_HandleTypeDef * htim3;
+	TIM_HandleTypeDef * htim2;
 // Aqui iriamos anadiendo los diferentes XXX_HandleTypeDef que necesitaramos anadir.
 };
 
@@ -24,6 +25,7 @@ struct Handles_S {
 volatile struct Data_S dades;
 extern ADC_HandleTypeDef hadc1;
 extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim2;
 
 // Prototypes.
 void setup(struct Handles_S *handles);
